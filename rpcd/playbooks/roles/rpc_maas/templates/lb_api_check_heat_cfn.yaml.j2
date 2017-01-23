@@ -13,9 +13,8 @@ monitoring_zones_poll:
 {% endfor %}
 alarms            :
     lb_api_alarm_heat_cfn   :
-        label               : lb_api_alarm_heat_cfn
         notification_plan_id: "{{ maas_notification_plan }}"
-        disabled            : {{ ('lb_api_alarm_heat_cfn' | match(maas_excluded_alarms_regex)) | ternary('true', 'false') }}
+        label               : lb_api_alarm_heat_cfn
         criteria            : |
             :set consecutiveCount={{ maas_alarm_local_consecutive_count }}
             if (metric['code'] != '300') {
